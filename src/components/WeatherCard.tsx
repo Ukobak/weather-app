@@ -1,6 +1,6 @@
 import React from 'react';
 import { ForecastDay } from '../types/types';
-import { Card, Text, makeStyles, CardHeader } from '@fluentui/react-components';
+import { Card, Text, makeStyles } from '@fluentui/react-components';
 
 interface WeatherCardProps {
     forecast: ForecastDay;
