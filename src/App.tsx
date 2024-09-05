@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
+import React, { useState } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from '@fluentui/react';
+import { lightTheme, darkTheme } from './styles/theme';
+import Home from './pages/Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const queryClient = new QueryClient();
+
+const App: React.FC = () => {
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+    const toggleTheme = () => {
+        setIsDarkTheme(!isDarkTheme);
+    };
+
+    return (
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+                <Home toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
+            </ThemeProvider>
+        </QueryClientProvider>
+    );
+};
 
 export default App;
